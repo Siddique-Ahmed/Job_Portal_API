@@ -6,7 +6,7 @@ import connectDB from "./utils/db.js";
 import userRoute from "./Routes/userRoutes.js";
 import companyRoute from "./Routes/companyRoutes.js";
 import jobRoute from "./Routes/jobsRoutes.js";
-import applicationRoute from "./Routes/applicationRoutes.js"
+import applicationRoute from "./Routes/applicationRoutes.js";
 dotenv.config({});
 const app = express();
 
@@ -16,7 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOption = {
   origin: "http://localhost:5173",
+  methods: ["GET", "PUT", "POST", "DELETE"],
   credentials: true,
+  allowHeaders: ["Content-Type", "multipart/form-data"],
 };
 app.use(cors(corsOption));
 
@@ -36,4 +38,3 @@ app.listen(PORT, () => {
   console.log(`Server is running in PORT ${PORT}`);
   connectDB();
 });
-
